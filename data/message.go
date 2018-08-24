@@ -320,7 +320,7 @@ func MimeHeaderDecode(str string) string {
 	str, charset, err := quotedprintable.DecodeHeader(str)
 	charset = strings.ToUpper(charset)
 
-	if err == nil && charset != "UTF-8" {
+	if err == nil && charset != "UTF-8" && len(charset) > 0 {
 		charset = fixCharset(charset)
 		// eg. charset can be "ISO-2022-JP"
 		convstr, err := iconv.Conv(str, "UTF-8", charset)
